@@ -24,9 +24,15 @@ jobs:
         run: |
           python3 - <<'PY'
           import subprocess
+          import re
+          from pathlib import Path
           allowed = {'README.md', '.github/workflows/preview-checks.yml', 'index.html', 'styles.css', 'app.mjs', 'favicon.svg', '.nojekyll', 'services/demo-data.mjs', 'services/demo-classroom.mjs', 'designs/index.html', 'designs/LICENSE-oil-ui.txt'}
           actual = set(subprocess.check_output(['git', 'ls-files'], text=True).splitlines())
           if actual != allowed:
               raise SystemExit(f'Unexpected release files: {actual ^ allowed}')
-          print('Public demonstration file list verified.')
+          for name in actual:
+              if name.endswith(('.html', '.mjs', '.css', '.svg')):
+                  if re.search(r'RCB-Q\d{3}|QB-RC-[CFT]\d{3}|SRC-WORD-|correct_option_id|questions\.draft', Path(name).read_text()):
+                      raise SystemExit('Private course content in public asset: ' + name)
+          print('Public demonstration file list and private identifiers verified.')
           PY

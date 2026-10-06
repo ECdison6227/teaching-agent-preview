@@ -5,7 +5,7 @@ export const demoQuestions = [
     group: "受弯概念",
     type: "单选",
     title: "受力过程 · 课堂热身",
-    stem: "这是一道界面示例题。下一次课堂，你希望先复习哪个知识点？",
+    stem: "下一次课堂，你希望先复习哪个知识点？",
     description: "用一题了解同学的学习需求，体验课前选题。",
     options: [
       { id: "A", text: "受力与变形过程" },
@@ -19,7 +19,7 @@ export const demoQuestions = [
     group: "计算流程",
     type: "单选",
     title: "计算流程 · 学习反馈",
-    stem: "体验选择与提交：你希望老师在哪个计算环节多做一次演示？",
+    stem: "你希望老师在哪个计算环节多做一次演示？",
     description: "选项与题目均为演示内容，正式题目另行审核。",
     options: [
       { id: "A", text: "识别已知条件" },
@@ -33,7 +33,7 @@ export const demoQuestions = [
     group: "课堂反馈",
     type: "判断",
     title: "课堂反馈 · 判断题样式",
-    stem: "这是判断题样式的演示：我希望课后能够查看本专题的复习资料。",
+    stem: "我希望课后能够查看本专题的复习资料。",
     description: "展示两项选择的排版，不进行知识评分。",
     options: [
       { id: "A", text: "是" },

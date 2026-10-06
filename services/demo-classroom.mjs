@@ -7,9 +7,9 @@ export class DemoClassroom {
     this.submissions = new Map();
   }
 
-  listQuestions(group = "全部") {
+  listQuestions(group = "全部", type = "全部") {
     return structuredClone(
-      this.questions.filter((q) => group === "全部" || q.group === group),
+      this.questions.filter((q) => (group === "全部" || q.group === group) && (type === "全部" || q.type === type)),
     );
   }
 
