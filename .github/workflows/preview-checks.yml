@@ -18,25 +18,41 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check app.mjs
-          node --check services/demo-classroom.mjs
-          node --check services/demo-data.mjs
-      - name: Confirm only demonstration assets are tracked
+          node --check services/question-data.mjs
+          node --check services/question-selection.mjs
+          node --check services/selection-export.mjs
+      - name: Verify release files and approved question bodies
         run: |
           python3 - <<'PY'
+          import hashlib
           import subprocess
           import re
           from pathlib import Path
-          allowed = {'README.md', '.github/workflows/preview-checks.yml', 'index.html', 'styles.css', 'app.mjs', 'favicon.svg', '.nojekyll', 'services/demo-data.mjs', 'services/demo-classroom.mjs', 'designs/index.html', 'designs/LICENSE-oil-ui.txt', 'designs/red-emphasis/index.html', 'designs/red-emphasis/LICENSE-oil-ui.txt', 'designs/seu-workspace/index.html', 'designs/seu-workspace/LICENSE-oil-ui.txt'}
+          allowed = {'README.md', '.github/workflows/preview-checks.yml', 'index.html', 'styles.css', 'app.mjs', 'favicon.svg', '.nojekyll', 'services/question-data.mjs', 'services/question-selection.mjs', 'services/selection-export.mjs', 'assets/seu-emblem.png', 'assets/question-c044.png', 'designs/index.html', 'designs/LICENSE-oil-ui.txt', 'designs/red-emphasis/index.html', 'designs/red-emphasis/LICENSE-oil-ui.txt', 'designs/seu-workspace/index.html', 'designs/seu-workspace/LICENSE-oil-ui.txt'}
           actual = set(subprocess.check_output(['git', 'ls-files'], text=True).splitlines())
           if actual != allowed:
               raise SystemExit(f'Unexpected release files: {actual ^ allowed}')
+          digests = {
+              'services/question-data.mjs': '7d59f241b01a852f46a0ea8876f0dcaae25c4c99906ccce371d387ce6029fd5a',
+              'assets/seu-emblem.png': '77afdde14094540f94787ba32722c04c2532647fa60a6820e7c5bd0b5d0cfc8f',
+              'assets/question-c044.png': 'fb2d7e0e3493b2f66ee7cac6abfe068e8a738315a21018788becfd54c378170a',
+          }
+          for name, digest in digests.items():
+              if hashlib.sha256(Path(name).read_bytes()).hexdigest() != digest:
+                  raise SystemExit('Unapproved source content or image: ' + name)
           for name in actual:
               if name.endswith(('.html', '.mjs', '.css', '.svg')):
-                  # User authorized question bodies only in the new workspace comparison.
                   forbidden = r'RCB-Q\d{3}|SRC-(?:WORD|PPT)-|correct_option_id|questions\.draft|"(?:answer|explanation|correctAnswer)"\s*:'
-                  if name != 'designs/seu-workspace/index.html':
+                  if not name.startswith('designs/'):
+                      forbidden += r'|\b(?:answers?|explanation|correctAnswer)[\'\"]?\s*[:=]'
+                  if name not in {'designs/seu-workspace/index.html', 'services/question-data.mjs'}:
                       forbidden += r'|QB-RC-[CFT]\d{3}'
-                  if re.search(forbidden, Path(name).read_text()):
-                      raise SystemExit('Private course content in public asset: ' + name)
-          print('Public demonstration file list and private identifiers verified.')
+                  text = Path(name).read_text()
+                  if re.search(forbidden, text):
+                      raise SystemExit('Private content in public asset: ' + name)
+                  if not name.startswith('designs/'):
+                      inspected = re.sub(r'xmlns=\\?"http://www\.w3\.org/(?:2000/svg|1998/Math/MathML)\\?"', '', text)
+                      if re.search(r'https?://', inspected):
+                          raise SystemExit('External resource in formal UI: ' + name)
+          print('18 release files verified; approved bodies and images pinned; no answers or source documents.')
           PY

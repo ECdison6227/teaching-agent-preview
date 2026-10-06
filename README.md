@@ -1,21 +1,13 @@
-# 专题教学空间 · 前端评审预览
+# 东南大学 · 混凝土结构教学平台
 
-[最新：东南大学正式界面对比](https://ecdison6227.github.io/teaching-agent-preview/designs/seu-workspace/)包含目录式与紧凑式两版候选，使用用户提供并明确授权公开的134道题目正文，不含答案。学校原版校徽、14个知识点、题型筛选、选题与HTML选题单已纳入候选；后端未接入。用户选择后再更新正式首页，当前首页仍保留上一轮版本。
+[打开教师工作台](https://ecdison6227.github.io/teaching-agent-preview/)。正式首页采用用户已选 01「课程目录工作台」，黑白 Word 简约风格、深红选题重点和少量蓝色操作标记，使用学校原版校徽。
 
-这是给教师评审的平台界面演示，使用另写的示例题和本浏览器内存数据。
+134 道现成原题按 14 个知识点与题型组织，支持搜索、组合筛选、分页和选题汇总。当前浏览器本地保留选题，刷新可恢复；下载 HTML 选题单自带原公式与配图，可离线打开或通过浏览器打印。不同设备不共享选题。
 
-已选方向01，当前主页采用黑白Word简约风格，采用用户选定的02深红数字与重点，少量蓝色标记选中状态。[打开教师工作台](https://ecdison6227.github.io/teaching-agent-preview/)。
+用户明确允许原题正文、选项、公式和配图公开；不包含答案、源 Word/DOCX/PPT、私有 PDF、学生资料。原题专业内容仍待教师审核。课堂统计、记录和学生入口保持尚无课堂的空状态，后端尚未接入。
 
-[本轮深红重点对比](https://ecdison6227.github.io/teaching-agent-preview/designs/red-emphasis/)：当前版与三种强调范围留作设计记录。用户已于2026-10-07选定02，首页已应用该方案。
+源功能 [PR #22](https://github.com/ECdison6227/teaching-agent/pull/22) 使用独立分支，经测试和代码、oil-ui 视觉评审。Pages 从 `preview` 部署分支发布待验收页面，发布不代表源功能已经合并 main；部署分支长期保留。
 
-[早期三套界面对比](https://ecdison6227.github.io/teaching-agent-preview/designs/)保留作为设计历史。
+历史设计对比：[课程目录与紧凑布局](https://ecdison6227.github.io/teaching-agent-preview/designs/seu-workspace/)、[深红强调](https://ecdison6227.github.io/teaching-agent-preview/designs/red-emphasis/)、[早期三个方向](https://ecdison6227.github.io/teaching-agent-preview/designs/)。对比文件保留当轮小样，不代表当前正式页面的所有行为。
 
-- 教师按知识点和题型组合筛选、选择示例题，预览一组课堂。
-- 加载程序生成的答卷，查看示例选项分布。
-- 切换学生视角，体验选项和本页提交确认。
-
-上一轮首页使用演示数据；本轮对比已获授权公开真实题目正文，不能将题目审核状态视为教师已批准。所有公开资源均无正确答案、源Word/DOCX/PDF、课件、学生记录或课堂后端。刷新清空选题状态，不同设备不会同步。真实题库 PDF 仍单独交付。
-
-Pages 从 `preview` 部署分支发布待验收页面；部署预览不等于源功能 PR 已合并。`preview` 长期保留为发布源，不随 PR 合并自动删除。
-
-本地查看：`python3 -m http.server 5173`，访问 `http://127.0.0.1:5173/`。静态文件全部使用相对路径，可迁移到学校服务器；正式接口在后续版本接入。
+本地查看：`python3 -m http.server 5173`，访问 `http://127.0.0.1:5173/`。正式静态文件使用相对路径，可迁移到学校服务器。当前不包含开课同步、真实学生提交及错题 PDF。

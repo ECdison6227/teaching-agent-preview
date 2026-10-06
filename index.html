@@ -1,38 +1,13 @@
 <!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="description" content="教师选题、课堂统计与学生答题的前端演示。" />
-    <title>教师工作台 · 钢筋混凝土梁</title>
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css" />
-    <script type="module" src="./app.mjs"></script>
-  </head>
-  <body>
-    <a class="skip-link" href="#workspace">跳到主要内容</a>
-    <div class="app-shell">
-      <header class="topbar">
-        <a class="brand" href="./">
-          <span class="brand-mark" aria-hidden="true">梁</span>
-          <span>专题教学空间</span>
-        </a>
-        <span class="demo-badge">前端演示</span>
-        <button type="button" id="reset-demo">重置演示</button>
-      </header>
-      <nav class="primary-nav" aria-label="主要导航">
-        <button type="button" data-view="prepare">课前选题</button>
-        <button type="button" data-view="stats">课堂统计</button>
-        <button type="button" data-view="student">学生视角</button>
-      </nav>
-      <main id="workspace" tabindex="-1"></main>
-      <footer class="page-footer">
-        <span>真实题库 PDF 单独交付</span>
-        <span>本页使用示例数据，刷新后重置；实际课堂服务后续接入。</span>
-      </footer>
-    </div>
-    <div id="notice" class="toast" role="status" aria-live="polite"></div>
-    <noscript><p>请启用 JavaScript 体验界面操作。</p></noscript>
-  </body>
-</html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>东南大学 · 混凝土结构教学平台</title><link rel="stylesheet" href="styles.css"></head>
+<body class="directory"><a href="#workspace" class="skip-link">跳到主要内容</a><div class="shell">
+<header class="topbar"><a class="brand" href="#workspace"><img src="assets/seu-emblem.png" alt="东南大学校徽" width="56" height="56"><div><strong>东南大学</strong><small>混凝土结构教学平台</small></div></a><div class="account"><span>教师端</span><button type="button" class="text-button" data-view="student">学生端</button><button type="button" class="text-button" id="teacher-return" data-view="prepare" hidden>教师端</button></div></header>
+
+<nav class="primary-nav" aria-label="教师导航"><button type="button" data-view="prepare" aria-current="page">课前选题</button><button type="button" data-view="stats">课堂统计</button><button type="button" data-view="records">课堂记录</button></nav>
+<main id="workspace" tabindex="-1">
+<section data-panel="prepare"><div class="page-heading"><div><p class="course">钢筋混凝土梁承载力计算</p><h1>课前选题</h1></div><button type="button" id="clear-selection" class="text-button">清空选择</button></div>
+<div class="course-layout"><aside class="knowledge-directory" aria-label="知识目录"><h2>知识目录</h2><div id="knowledge-nav"><button type="button" data-group="all" aria-current="true"><span>全部题目</span><span>134</span></button><button type="button" data-group="detailing"><span>构造要求与材料</span><span>11</span></button><button type="button" data-group="stages"><span>受弯工作阶段</span><span>3</span></button><button type="button" data-group="failure"><span>受弯破坏与配筋率</span><span>19</span></button><button type="button" data-group="principles"><span>正截面计算基本原理</span><span>3</span></button><button type="button" data-group="singly"><span>单筋矩形截面</span><span>1</span></button><button type="button" data-group="cracking"><span>裂缝与正常使用</span><span>16</span></button><button type="button" data-group="stiffness"><span>刚度与变形</span><span>13</span></button><button type="button" data-group="doubly"><span>双筋矩形截面</span><span>7</span></button><button type="button" data-group="t-section"><span>T形截面</span><span>6</span></button><button type="button" data-group="shear-modes"><span>斜截面破坏与影响因素</span><span>22</span></button><button type="button" data-group="shear-design"><span>受剪承载力计算</span><span>6</span></button><button type="button" data-group="shear-detailing"><span>斜截面构造与弯起钢筋</span><span>8</span></button><button type="button" data-group="torsion"><span>补充题库：受扭与弯剪扭</span><span>18</span></button><button type="button" data-group="continuous"><span>补充题库：连续梁内力分析</span><span>1</span></button></div></aside><div class="prepare-layout"><div><div class="filters"><label>搜索题目<input id="search-filter" type="search" placeholder="题干、编号" aria-label="搜索题目"></label><label>知识点<select id="group-filter" aria-label="知识点"><option value="all">全部知识点</option><option value="detailing">构造要求与材料</option><option value="stages">受弯工作阶段</option><option value="failure">受弯破坏与配筋率</option><option value="principles">正截面计算基本原理</option><option value="singly">单筋矩形截面</option><option value="cracking">裂缝与正常使用</option><option value="stiffness">刚度与变形</option><option value="doubly">双筋矩形截面</option><option value="t-section">T形截面</option><option value="shear-modes">斜截面破坏与影响因素</option><option value="shear-design">受剪承载力计算</option><option value="shear-detailing">斜截面构造与弯起钢筋</option><option value="torsion">补充题库：受扭与弯剪扭</option><option value="continuous">补充题库：连续梁内力分析</option></select></label><label>题型<select id="type-filter" aria-label="题型"><option value="all">全部题型</option><option value="单选">单选题</option><option value="填空">填空题</option><option value="判断">判断题</option></select></label></div><div class="list-heading"><h2>题目列表</h2><span id="result-count">134 道</span></div><div id="question-list"></div><div class="pagination"><button id="previous-page" type="button">上一页</button><span id="page-count">1 / 23</span><button id="next-page" type="button">下一页</button></div></div><aside class="selection-column" aria-label="本次课堂选题"><div class="selection-top"><h2>本次课堂选题</h2><strong id="selected-count">0</strong></div><ol id="selected-items" class="selected-items"><li class="selection-empty">尚未选题</li></ol><button id="save-selection" class="primary full" type="button" disabled>下载选题单</button><p id="selection-status" class="quiet-label" role="status"></p></aside></div></div></section>
+<section data-panel="stats" hidden><div class="page-heading"><div><p class="course">钢筋混凝土梁承载力计算</p><h1>课堂统计</h1></div><span class="quiet-label">未开课</span></div><div class="metrics"><div class="metric"><div class="metric-label">已交答卷</div><div class="metric-value">0<small>份</small></div></div><div class="metric"><div class="metric-label">本组题目</div><div class="metric-value">0<small>道</small></div></div><div class="metric"><div class="metric-label">收答状态</div><div class="metric-value status">未开始</div></div></div><div class="list-heading"><h2>选项分布</h2></div><div class="empty"><h3>暂无答卷</h3></div></section>
+<section data-panel="records" hidden><div class="page-heading"><div><p class="course">钢筋混凝土梁承载力计算</p><h1>课堂记录</h1></div></div><div class="table-heading"><span>课堂</span><span>题数</span><span>答卷</span></div><div class="empty"><h3>暂无课堂记录</h3></div></section>
+<section data-panel="student" hidden><div class="student-sheet"><p class="course">钢筋混凝土梁承载力计算</p><h1>课堂答题</h1><div class="empty"><h3>课堂未开始</h3></div></div></section>
+</main></div><template id="figure-c044"><img src="assets/question-c044.png" alt="T形截面配图"></template><script type="module" src="app.mjs"></script></body></html>
