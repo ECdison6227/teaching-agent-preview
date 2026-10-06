@@ -4,6 +4,8 @@
 
 已选方向01，当前主页采用黑白Word简约风格，少量蓝色标记选中状态。[打开教师工作台](https://ecdison6227.github.io/teaching-agent-preview/)。
 
+[本轮深红重点对比](https://ecdison6227.github.io/teaching-agent-preview/designs/red-emphasis/)：当前版与三种强调范围，等待用户选择。首页暂不应用推荐方案。
+
 [早期三套界面对比](https://ecdison6227.github.io/teaching-agent-preview/designs/)保留作为设计历史。
 
 - 教师按知识点和题型组合筛选、选择示例题，预览一组课堂。

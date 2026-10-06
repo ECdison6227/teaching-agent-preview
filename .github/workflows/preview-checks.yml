@@ -26,7 +26,7 @@ jobs:
           import subprocess
           import re
           from pathlib import Path
-          allowed = {'README.md', '.github/workflows/preview-checks.yml', 'index.html', 'styles.css', 'app.mjs', 'favicon.svg', '.nojekyll', 'services/demo-data.mjs', 'services/demo-classroom.mjs', 'designs/index.html', 'designs/LICENSE-oil-ui.txt'}
+          allowed = {'README.md', '.github/workflows/preview-checks.yml', 'index.html', 'styles.css', 'app.mjs', 'favicon.svg', '.nojekyll', 'services/demo-data.mjs', 'services/demo-classroom.mjs', 'designs/index.html', 'designs/LICENSE-oil-ui.txt', 'designs/red-emphasis/index.html', 'designs/red-emphasis/LICENSE-oil-ui.txt'}
           actual = set(subprocess.check_output(['git', 'ls-files'], text=True).splitlines())
           if actual != allowed:
               raise SystemExit(f'Unexpected release files: {actual ^ allowed}')
