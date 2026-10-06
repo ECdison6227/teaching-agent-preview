@@ -1,0 +1,32 @@
+name: Preview asset checks
+
+on:
+  pull_request:
+  push:
+    branches: [preview]
+
+permissions:
+  contents: read
+
+jobs:
+  public-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check JavaScript syntax
+        run: |
+          node --check app.mjs
+          node --check services/demo-classroom.mjs
+          node --check services/demo-data.mjs
+      - name: Confirm only demonstration assets are tracked
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          allowed = {'README.md', '.github/workflows/preview-checks.yml', 'index.html', 'styles.css', 'app.mjs', 'favicon.svg', '.nojekyll', 'services/demo-data.mjs', 'services/demo-classroom.mjs'}
+          actual = set(subprocess.check_output(['git', 'ls-files'], text=True).splitlines())
+          if actual != allowed:
+              raise SystemExit(f'Unexpected release files: {actual ^ allowed}')
+          print('Public demonstration file list verified.')
+          PY

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#20594b" />
+    <meta
+      name="description"
+      content="专题教学平台前端演示：教师选题、课堂统计与学生答题。所有线上题目和统计均为演示。"
+    />
+    <title>专题教学空间 · 前端演示</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#workspace">跳到主要内容</a>
+    <aside class="sidebar">
+      <a class="brand" href="./" aria-label="专题教学空间首页">
+        <span class="brand-mark" aria-hidden="true">梁</span>
+        <span>专题教学空间<small>TOPIC LEARNING STUDIO</small></span>
+      </a>
+      <div class="sidebar-label">教学工作台</div>
+      <nav class="primary-nav" aria-label="主要导航">
+        <button type="button" data-view="prepare">
+          <span aria-hidden="true">▦</span>课前选题
+        </button>
+        <button type="button" data-view="stats">
+          <span aria-hidden="true">▥</span>课堂统计<span class="nav-note"
+            >演示</span
+          >
+        </button>
+        <button type="button" data-view="student">
+          <span aria-hidden="true">▯</span>学生视角
+        </button>
+      </nav>
+      <div class="sidebar-label future-label">后续建设</div>
+      <div class="future-nav"><span>◇ 学习空间</span><small>规划中</small></div>
+      <div class="future-nav"><span>✧ 专题助教</span><small>规划中</small></div>
+      <div class="sidebar-bottom">
+        <span class="status-dot" aria-hidden="true"></span>教师评审预览
+        <p>先看界面与流程<br />再一起完善真实课堂</p>
+        <button type="button" id="reset-demo">重置本页演示 ↺</button>
+      </div>
+    </aside>
+    <div class="app-shell">
+      <header class="topbar">
+        <span class="breadcrumb">课程专题 <span>/</span> 钢筋混凝土梁</span>
+        <span class="demo-badge"
+          ><span class="status-dot" aria-hidden="true"></span>前端演示 ·
+          v0.1</span
+        >
+      </header>
+      <main id="workspace" tabindex="-1"></main>
+      <footer class="page-footer">
+        <span>题库审核 PDF 单独交付</span
+        ><span>演示数据仅保留在本页，刷新后重置</span>
+      </footer>
+    </div>
+    <div id="notice" class="toast" role="status" aria-live="polite"></div>
+    <noscript
+      ><p class="noscript">
+        请启用 JavaScript 体验界面操作。线上没有真实课堂或学生数据。
+      </p></noscript
+    >
+  </body>
+</html>
