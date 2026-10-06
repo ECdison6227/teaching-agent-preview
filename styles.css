@@ -5,7 +5,8 @@
     --ink:#171717;
     --muted:#616161;
     --line:#dedede;
-    --accent:#2563eb}
+    --accent:#2563eb;
+    --emphasis:#7a1f2b}
     body{
       margin:0;
       background:#fff;
@@ -182,7 +183,7 @@
                                                                                             border-bottom:1px solid var(--line);
                                                                                             padding:17px 0}
                                                                                             .number{
-                                                                                              color:var(--muted);
+                                                                                              color:var(--emphasis);
                                                                                               font-variant-numeric:tabular-nums}
                                                                                               .primary-button{
                                                                                                 background:#171717;
@@ -241,6 +242,7 @@
                                                                                                                           font-variant-numeric:tabular-nums;
                                                                                                                           margin:4px 0}
                                                                                                                           .metric-value small{
+                                                                                                                            color:var(--muted);
                                                                                                                             margin-left:8px}
                                                                                                                             .metric p{
                                                                                                                               font-size:14px;
@@ -274,8 +276,9 @@
                                                                                                                                               background:#f0f0f0}
                                                                                                                                               .bar-fill{
                                                                                                                                                 height:100%;
-                                                                                                                                                background:var(--accent)}
+                                                                                                                                                background:var(--emphasis)}
                                                                                                                                                 .bar-value{
+                                                                                                                                                  color:var(--emphasis);
                                                                                                                                                   text-align:right;
                                                                                                                                                   font-variant-numeric:tabular-nums}
                                                                                                                                                   .student-layout{
@@ -481,3 +484,15 @@
                                                                                                                                                                                                                                                                                           h1{
                                                                                                                                                                                                                                                                                             font-size:26px}
                                                                                                                                                                                                                                                                                           }
+
+/* Approved option 02: numbers and selection summary. */
+#selected-count {
+  color: var(--emphasis);
+  font-size: 22px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.selection-top h2,
+.metric:nth-child(-n+2) .metric-value {
+  color: var(--emphasis);
+}

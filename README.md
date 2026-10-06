@@ -2,9 +2,9 @@
 
 这是给教师评审的平台界面演示，使用另写的示例题和本浏览器内存数据。
 
-已选方向01，当前主页采用黑白Word简约风格，少量蓝色标记选中状态。[打开教师工作台](https://ecdison6227.github.io/teaching-agent-preview/)。
+已选方向01，当前主页采用黑白Word简约风格，采用用户选定的02深红数字与重点，少量蓝色标记选中状态。[打开教师工作台](https://ecdison6227.github.io/teaching-agent-preview/)。
 
-[本轮深红重点对比](https://ecdison6227.github.io/teaching-agent-preview/designs/red-emphasis/)：当前版与三种强调范围，等待用户选择。首页暂不应用推荐方案。
+[本轮深红重点对比](https://ecdison6227.github.io/teaching-agent-preview/designs/red-emphasis/)：当前版与三种强调范围留作设计记录。用户已于2026-10-07选定02，首页已应用该方案。
 
 [早期三套界面对比](https://ecdison6227.github.io/teaching-agent-preview/designs/)保留作为设计历史。
 
