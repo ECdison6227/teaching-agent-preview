@@ -184,7 +184,7 @@ function renderReview() {
   const group = resolvePreparation(lesson, bank);
   if (!group) return false;
   $("#review-summary").innerHTML =
-    `<strong>${escape(group.name)}</strong><span><b class="count">${group.ids.length}</b> 道题</span>`;
+    `<strong>${escape(group.name)}</strong><span><b class="count">${group.ids.length}</b> 道题</span>${preparation.readError ? "" : '<a class="link" href="session.html">逐题查看 →</a>'}`;
   $("#review-questions").innerHTML = group.ids
     .map((id, i) => questionCard(id, i))
     .join("");
