@@ -22,4 +22,4 @@
 
 本地查看：`python3 -m http.server 5173`，访问 `http://127.0.0.1:5173/`。正式静态文件使用相对路径，可迁移到学校服务器。当前不包含开课同步、真实学生提交及错题 PDF。
 
-[第06轮：授课与学生答题设计对比](https://ecdison6227.github.io/teaching-agent-preview/designs/teaching-session/)：01逐题授课、同页翻题；02大字投屏、独立控制。入口、统计和学生作答分开；4道现成原题仅用于比较界面，选项与填空保存在候选会话内存。发布、二维码、提交及PDF不可用，没有答案或假成功。由oil-ui开源版0.16.6生成，源设计[PR #30](https://github.com/ECdison6227/teaching-agent/pull/30)保持Draft，等待本轮选择；正式前端不改。两版6轮108项原生交互检查、来源与语法检查通过。桌面/手机录屏帧已查看，CSS zoom不等于系统缩放，完整动效验证仍有限制。
+[第06轮：授课与学生答题设计对比](https://ecdison6227.github.io/teaching-agent-preview/designs/teaching-session/)：用户已选择 01「逐题授课 · 同页翻题」。正式页面为 [逐题授课](session.html) 与 [学生答题](student.html)。教师只按当前浏览器里已保存的题目组逐题查看；学生只按公开题号看一道题。发布、二维码、提交及 PDF 仍不可用，没有答案或假成功。源功能 [PR #32](https://github.com/ECdison6227/teaching-agent/pull/32) 保持 Draft，公开发布不等于源功能已合并。设计留档 [PR #30](https://github.com/ECdison6227/teaching-agent/pull/30) 已合并。
