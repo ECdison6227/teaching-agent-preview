@@ -28,7 +28,7 @@ jobs:
           import subprocess
           import re
           from pathlib import Path
-          allowed = {'README.md', '.github/workflows/preview-checks.yml', 'index.html', 'styles.css', 'app.mjs', 'favicon.svg', '.nojekyll', 'services/question-data.mjs', 'services/question-selection.mjs', 'services/selection-export.mjs', 'assets/seu-emblem.png', 'assets/question-c044.png', 'designs/index.html', 'designs/LICENSE-oil-ui.txt', 'designs/red-emphasis/index.html', 'designs/red-emphasis/LICENSE-oil-ui.txt', 'designs/seu-workspace/index.html', 'designs/seu-workspace/LICENSE-oil-ui.txt'}
+          allowed = {'README.md', '.github/workflows/preview-checks.yml', 'index.html', 'styles.css', 'app.mjs', 'favicon.svg', '.nojekyll', 'services/question-data.mjs', 'services/question-selection.mjs', 'services/selection-export.mjs', 'assets/seu-emblem.png', 'assets/question-c044.png', 'designs/index.html', 'designs/LICENSE-oil-ui.txt', 'designs/red-emphasis/index.html', 'designs/red-emphasis/LICENSE-oil-ui.txt', 'designs/seu-workspace/index.html', 'designs/seu-workspace/LICENSE-oil-ui.txt', 'designs/classroom-workspace/index.html', 'designs/classroom-workspace/LICENSE-oil-ui.txt'}
           actual = set(subprocess.check_output(['git', 'ls-files'], text=True).splitlines())
           if actual != allowed:
               raise SystemExit(f'Unexpected release files: {actual ^ allowed}')
@@ -45,7 +45,7 @@ jobs:
                   forbidden = r'RCB-Q\d{3}|SRC-(?:WORD|PPT)-|correct_option_id|questions\.draft|"(?:answer|explanation|correctAnswer)"\s*:'
                   if not name.startswith('designs/'):
                       forbidden += r'|\b(?:answers?|explanation|correctAnswer)[\'\"]?\s*[:=]'
-                  if name not in {'designs/seu-workspace/index.html', 'services/question-data.mjs'}:
+                  if name not in {'designs/seu-workspace/index.html', 'designs/classroom-workspace/index.html', 'services/question-data.mjs'}:
                       forbidden += r'|QB-RC-[CFT]\d{3}'
                   text = Path(name).read_text()
                   if re.search(forbidden, text):
@@ -54,5 +54,5 @@ jobs:
                       inspected = re.sub(r'xmlns=\\?"http://www\.w3\.org/(?:2000/svg|1998/Math/MathML)\\?"', '', text)
                       if re.search(r'https?://', inspected):
                           raise SystemExit('External resource in formal UI: ' + name)
-          print('18 release files verified; approved bodies and images pinned; no answers or source documents.')
+          print('20 release files verified; approved bodies and images pinned; no answers or source documents.')
           PY
