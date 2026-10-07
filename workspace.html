@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>东南大学 · 教师课堂</title>
+    <link rel="icon" href="favicon.svg" />
+    <link rel="stylesheet" href="workspace.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="header">
+        <div class="brand">
+          <img
+            src="assets/seu-emblem.png"
+            alt="东南大学校徽"
+            width="50"
+            height="50"
+          />
+          <div>
+            <strong>东南大学</strong><small>混凝土结构 · 教师工作台</small>
+          </div>
+        </div>
+        <span class="role">教师端</span>
+      </header>
+      <nav aria-label="课程导航">
+        <button id="nav-groups" data-go="groups" aria-current="page">
+          题目组</button
+        ><button id="nav-prepare" data-go="prepare">课堂准备</button>
+      </nav>
+      <main>
+        <section class="page" id="page-groups">
+          <div class="heading">
+            <div>
+              <h1 tabindex="-1">题目组</h1>
+              <p>第 6 章 · 钢筋混凝土梁承载力计算原理</p>
+            </div>
+            <button id="new-group" class="primary">新建题目组</button>
+          </div>
+          <p
+            id="library-notice"
+            class="notice"
+            role="status"
+            aria-live="polite"
+          ></p>
+          <div id="group-list"><div class="empty">还没有题目组</div></div>
+        </section>
+        <section class="page" id="page-edit" hidden>
+          <button class="link" data-go="groups">← 返回题目组</button>
+          <div id="discard-confirm" class="context" role="alert" hidden>
+            <span>当前修改尚未保存。是否放弃修改？</span>
+            <div class="actions">
+              <button id="keep" class="primary">继续编辑</button
+              ><button id="discard">放弃修改</button>
+            </div>
+          </div>
+          <div class="heading"><h1 tabindex="-1">编辑题目组</h1></div>
+          <div class="editor-heading">
+            <label class="field"
+              ><span>题目组名称</span
+              ><input
+                id="group-name"
+                maxlength="60"
+                autocomplete="off"
+                placeholder="输入题目组名称"
+            /></label>
+            <div class="actions">
+              <span id="save-state">未保存</span
+              ><button id="save-group" class="primary">保存题目组</button>
+            </div>
+            <p id="save-notice" class="notice" aria-live="polite"></p>
+          </div>
+          <div class="section-title">
+            <h2>本组题目 · <b class="count" id="edit-count">0</b> 道</h2>
+            <button id="add-question" data-go="bank">添加题目</button>
+          </div>
+          <div id="question-list"></div>
+        </section>
+        <section class="page" id="page-bank" hidden>
+          <button class="link" data-go="edit">← 返回题目组编辑</button>
+          <div class="heading"><h1 tabindex="-1">选择题目</h1></div>
+          <div class="context">
+            <strong id="bank-group-name">未命名题目组</strong
+            ><span>已选 <b id="bank-selected" class="count">0</b> 道</span
+            ><button data-go="edit">完成选题</button>
+          </div>
+          <div class="filters">
+            <label class="field"
+              ><span>查找题目</span
+              ><input
+                id="search"
+                type="search"
+                placeholder="关键词或题号" /></label
+            ><label class="field"
+              ><span>知识点</span
+              ><select id="knowledge">
+                <option value="">全部知识点</option>
+              </select></label
+            ><label class="field"
+              ><span>题型</span
+              ><select id="type">
+                <option value="">全部题型</option>
+                <option>单选</option>
+                <option>判断</option>
+                <option>填空</option>
+              </select></label
+            >
+          </div>
+          <p class="result-count" id="result-count"></p>
+          <p class="notice" id="bank-notice" aria-live="polite"></p>
+          <div id="bank-results"></div>
+          <div class="pagination">
+            <button id="previous">上一页</button><span id="page-count"></span
+            ><button id="next">下一页</button>
+          </div>
+        </section>
+        <section class="page" id="page-prepare" hidden>
+          <div class="heading">
+            <h1 tabindex="-1">课堂准备</h1>
+            <button class="link" data-go="groups">管理题目组 →</button>
+          </div>
+          <div class="prepare-sheet">
+            <div id="lesson-fields">
+              <label class="field"
+                ><span>课堂名称</span
+                ><input
+                  id="lesson-name"
+                  maxlength="60"
+                  autocomplete="off"
+                  placeholder="输入课堂名称"
+                  required /></label
+              ><label class="field"
+                ><span>上课日期</span
+                ><input id="lesson-date" type="date" required
+              /></label>
+            </div>
+            <div id="lesson-group-fields">
+              <label class="field"
+                ><span>课堂题目组</span
+                ><select id="lesson-group">
+                  <option value="">请选择题目组</option>
+                </select></label
+              >
+              <div class="selected-summary" id="lesson-summary" hidden></div>
+              <button id="view-questions" class="link" hidden>
+                查看本组题目 →
+              </button>
+            </div>
+            <p class="notice" id="lesson-notice" aria-live="polite"></p>
+            <div class="actions">
+              <button id="start-class" class="primary" disabled>
+                开始上课
+              </button>
+            </div>
+          </div>
+        </section>
+        <section class="page" id="page-review" hidden>
+          <button class="link" data-go="prepare">← 返回课堂准备</button>
+          <div class="heading"><h1 tabindex="-1">课堂题目组</h1></div>
+          <div class="preview-summary" id="review-summary"></div>
+          <div id="review-questions"></div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="workspace.mjs"></script>
+  </body>
+</html>
