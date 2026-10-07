@@ -18,6 +18,8 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check app.mjs
+          node --check workspace.mjs
+          node --check services/question-groups.mjs
           node --check services/question-data.mjs
           node --check services/question-selection.mjs
           node --check services/selection-export.mjs
@@ -29,6 +31,7 @@ jobs:
           import re
           from pathlib import Path
           allowed = {'README.md', '.github/workflows/preview-checks.yml', 'index.html', 'styles.css', 'app.mjs', 'favicon.svg', '.nojekyll', 'services/question-data.mjs', 'services/question-selection.mjs', 'services/selection-export.mjs', 'assets/seu-emblem.png', 'assets/question-c044.png', 'designs/index.html', 'designs/LICENSE-oil-ui.txt', 'designs/red-emphasis/index.html', 'designs/red-emphasis/LICENSE-oil-ui.txt', 'designs/seu-workspace/index.html', 'designs/seu-workspace/LICENSE-oil-ui.txt', 'designs/classroom-workspace/index.html', 'designs/classroom-workspace/LICENSE-oil-ui.txt'}
+          allowed.update({'workspace.html', 'workspace.css', 'workspace.mjs', 'services/question-groups.mjs'})
           actual = set(subprocess.check_output(['git', 'ls-files'], text=True).splitlines())
           if actual != allowed:
               raise SystemExit(f'Unexpected release files: {actual ^ allowed}')
@@ -54,5 +57,5 @@ jobs:
                       inspected = re.sub(r'xmlns=\\?"http://www\.w3\.org/(?:2000/svg|1998/Math/MathML)\\?"', '', text)
                       if re.search(r'https?://', inspected):
                           raise SystemExit('External resource in formal UI: ' + name)
-          print('20 release files verified; approved bodies and images pinned; no answers or source documents.')
+          print('24 release files verified; approved bodies and images pinned; no answers or source documents.')
           PY
