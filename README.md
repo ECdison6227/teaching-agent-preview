@@ -6,7 +6,7 @@
 
 题组、未保存草稿、课堂准备分别在当前浏览器保存，刷新可恢复，其他设备不共享。保存失败时保留当前输入并提示；浏览器禁止写入时不能承诺刷新恢复。课堂预览使用已保存组的顺序；真实开课、二维码和学校后端尚未接入，开始上课不可用。
 
-源 [PR #26](https://github.com/ECdison6227/teaching-agent/pull/26) 与公开发布 [PR #4](https://github.com/ECdison6227/teaching-agent-preview/pull/4) 保持Draft，等待用户体验验收，部署不代表源功能已合并。20项Node、11项Python检查与3轮T3原生浏览器检查通过，每轮28项。静态画面与200% CSS重排已查看；录屏包含末尾短暂切换，完整动态视觉证据仍待补，不冒充完整视觉验收。
+源 [PR #26](https://github.com/ECdison6227/teaching-agent/pull/26)、设计留档 [PR #28](https://github.com/ECdison6227/teaching-agent/pull/28) 与公开发布 [PR #4](https://github.com/ECdison6227/teaching-agent-preview/pull/4) 已于2026-10-07经用户体验验收Squash合并main。20项Node、11项Python检查与3轮T3原生浏览器检查通过，每轮28项。静态画面与200% CSS重排已查看；录屏包含末尾短暂切换，完整动态视觉证据仍待补，不冒充完整视觉验收。
 
 134 道现成原题按 14 个知识点与题型组织，支持搜索、组合筛选、分页和选题汇总。当前浏览器本地保留选题，刷新可恢复；下载 HTML 选题单自带原公式与配图，可离线打开或通过浏览器打印。不同设备不共享选题。
 
@@ -21,3 +21,5 @@
 历史设计对比：[课程目录与紧凑布局](https://ecdison6227.github.io/teaching-agent-preview/designs/seu-workspace/)、[深红强调](https://ecdison6227.github.io/teaching-agent-preview/designs/red-emphasis/)、[早期三个方向](https://ecdison6227.github.io/teaching-agent-preview/designs/)。对比文件保留当轮小样，不代表当前正式页面的所有行为。
 
 本地查看：`python3 -m http.server 5173`，访问 `http://127.0.0.1:5173/`。正式静态文件使用相对路径，可迁移到学校服务器。当前不包含开课同步、真实学生提交及错题 PDF。
+
+[第06轮：授课与学生答题设计对比](https://ecdison6227.github.io/teaching-agent-preview/designs/teaching-session/)：01逐题授课、同页翻题；02大字投屏、独立控制。入口、统计和学生作答分开；4道现成原题仅用于比较界面，选项与填空保存在候选会话内存。发布、二维码、提交及PDF不可用，没有答案或假成功。由oil-ui开源版0.16.6生成，源设计[PR #30](https://github.com/ECdison6227/teaching-agent/pull/30)保持Draft，等待本轮选择；正式前端不改。两版6轮108项原生交互检查、来源与语法检查通过。桌面/手机录屏帧已查看，CSS zoom不等于系统缩放，完整动效验证仍有限制。
